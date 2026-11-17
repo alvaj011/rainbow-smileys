@@ -1,0 +1,72 @@
+/* Center the poster on the page. */
+body {
+  margin: 0;
+  padding: 18px;
+  display: flex;
+  justify-content: center;
+  background: #eeeeeb;
+}
+
+/* Six equal columns. The 72 faces make twelve rows. */
+.poster {
+  width: min(100%, 620px);
+  padding: 12px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  background: white;
+  border: 2px solid #222;
+}
+
+/* A square becomes a circle with border-radius: 50%. */
+.face {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+/* Two oval eyes. ::before and ::after add shapes without extra HTML. */
+.face::before,
+.face::after {
+  content: "";
+  position: absolute;
+  top: 22%;
+  width: 12%;
+  height: 23%;
+  background: #252822;
+  border-radius: 50%;
+}
+.face::before { left: 30%; }
+.face::after { right: 30%; }
+
+/* The bottom and side borders form the curved smile. */
+.smile {
+  position: absolute;
+  left: 17%;
+  top: 47%;
+  width: 66%;
+  height: 32%;
+  box-sizing: border-box;
+  border: 3px solid #252822;
+  border-top: 0;
+  border-radius: 0 0 50% 50% / 0 0 100% 100%;
+}
+
+/* Change a face's color by changing its class in the HTML. */
+.red    { background: #ce1642; }
+.orange { background: #fb8a29; }
+.gold   { background: #ffb345; }
+.yellow { background: #ffea30; }
+.green  { background: #70b24b; }
+.lime   { background: #bed844; }
+.blue   { background: #129ac8; }
+.cyan   { background: #42bed0; }
+.purple { background: #883e92; }
+.pink   { background: #c82991; }
+
+/* Keep the same six-column composition on a smaller screen. */
+@media (max-width: 500px) {
+  body { padding: 8px; }
+  .poster { padding: 8px; gap: 5px; }
+  .smile { border-width: 2px; }
+}
